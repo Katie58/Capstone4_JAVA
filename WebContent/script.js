@@ -7,6 +7,12 @@ var cart = [['item', 0.00, 0]];
 
 function addToCart(productName, productPrice) {
 	
+	var parent = document.getElementById("addBody");
+	var child = document.getElementById("omgWork");
+	if (child) {
+		parent.removeChild(child);
+	}
+	
 	var present = false; 
 	
 	for (var item of cart) {
@@ -29,7 +35,7 @@ function addToCart(productName, productPrice) {
 	var cartAdd = document.getElementById('addBody');
 	cartAdd.insertAdjacentHTML("beforeend", "<tr id=\"omgWork\"></tr>");
 	var omg = document.getElementById('omgWork');
-	omg.insertAdjacentHTML("afterbegin", "<td>" + productName + "</td><td>" + f.format(productPrice) + "</td><td><i><small>added to cart</small></i></td>");
+	omg.insertAdjacentHTML("afterbegin", "<td><br>" + productName + "</td><td><br>" + f.format(productPrice) + "</td><td><i><small><br>added to cart</small></i></td>");
 }
 
 function checkout() {
@@ -42,7 +48,7 @@ function checkout() {
 	*/
 	
 	var parent = document.getElementById("cartDiv");
-	var child = document.getElementById("cartTable");
+	var child = document.getElementById("table");
 	if (child) {
 		parent.removeChild(child);
 	}
@@ -73,7 +79,7 @@ function checkout() {
 	header = document.createTextNode("Quantity")
 	head.appendChild(header);
 	
-	var total = 0;
+	var subTotal = 0;
 	if(cart[1][0] === undefined) {
 		console.log("5" + cart);
 		var cartShow = document.getElementById('cartContents');
@@ -88,13 +94,18 @@ function checkout() {
 			cartShow.insertAdjacentHTML("afterbegin", "<tr id=\"omfg\"></tr>");
 			var omg = document.getElementById('omfg');
 			omg.insertAdjacentHTML("afterbegin", "<td>" + item[0] + "</td><td>" + f.format(item[1]) + "</td><td>" + item[2] + "</td>");
-			total += item[1];
+			subTotal += item[1];
 		}
 	}
-	var tax = total * 0.06;
+	var tax = subTotal * 0.06;
+	var cartSubTotal = document.getElementById('cartContents');
+	cartSubTotal.insertAdjacentHTML("beforeend", "<tr id=\"omfgSubTotal\"></tr>");
+	var omfg = document.getElementById('omfgSubTotal');
+	omfg.insertAdjacentHTML("afterbegin", "<td><br>" + item[0].length + " items</td><td><br>subtotal: " + f.format(subTotal) + "</td><td><br>tax: " + f.format(tax) + "</td>");
+
+	var total = subTotal + tax;
 	var cartTotal = document.getElementById('cartContents');
 	cartTotal.insertAdjacentHTML("beforeend", "<tr id=\"omfgTotal\"></tr>");
 	var omfg = document.getElementById('omfgTotal');
-	omfg.insertAdjacentHTML("afterbegin", "<td><br>" + item[0].length + " items</td><td><br>subtotal: " + f.format(total) + "</td><td><br>tax: " + f.format(tax) + "</td>");
-
+	omfg.insertAdjacentHTML("afterbegin", "<td><br></td><td><br></td><td><br>Total: " + f.format(total) + "</td>");
 }

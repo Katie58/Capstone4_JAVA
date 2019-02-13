@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id>ADD TO CART</div>
 	<div id="page" class="fill">
 		<table id="inventory" style="overflow-x:auto;">
 			<thead>
@@ -15,7 +16,7 @@
 					<th>Add to Cart</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id = "addBody">
 				<tr id="lions">
 					<td>Lions</td>
 					<td>$100</td>
@@ -31,19 +32,6 @@
 					<td>$10</td>
 					<td><button onclick="addToCart('beers', 10)">Add</button></td>
 				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div>
-		<table id ="added" style="overflow-x:auto;">
-			<thead id="addHead">
-			<tr>
-				<th>Product</th>
-				<th>Price</th>
-				<th><i><small>___________</small></i></th>
-			</tr>
-			</thead>
-			<tbody id="addBody">
 			</tbody>
 		</table>
 	</div>	

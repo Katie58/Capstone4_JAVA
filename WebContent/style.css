@@ -15,26 +15,25 @@
 
 table {
 	background-color: white;
-
 	text-align: center;
 	border: 1px solid black;
-	padding: 15px;
+	padding: 5%;
 	left: 25%;
 	right: 25%;
 	width: 50%;
 }
 
+#title {
+	position absolute;
+	top: 5%;
+}
+
 #inventory {
 	position: absolute;
-	top: 25%;
+	top: 5%;
 }
 
 #cart {
-	position: absolute;
-	top: 75%;
-}
-
-#added {
 	position: absolute;
 	top: 50%;
 }
@@ -55,7 +54,13 @@ th, tr {
 }
 
 #basket {
-	position: absolute;
+	background-color: white;
 	text-align: center;
+	border: 1px solid black;
+	padding: 15px;
+	left: 25%;
+	right: 25%;
+	width: 50%;
+	position: absolute;
 	bottom: 10px;
 }
