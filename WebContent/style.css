@@ -1,0 +1,62 @@
+#page {
+	height: window.innerheight;
+	width: window.innerwidth;
+	position: fixed;
+	text-align: center;
+}
+
+.fill {
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: RGB(200,200,200);
+}
+
+table, #shop {
+	background-color: white;
+	position: absolute;
+	text-align: center;
+	border: 1px solid black;
+	padding: 15px;
+	top: 25%;
+	left: 25%;
+	right: 25%;
+	width: 50%;
+	float: left;
+}
+
+#cart {
+
+	position: absolute;
+	top: 75%;
+	float: right;
+}
+
+#added {
+	visibility: visible;
+	position: absolute;
+	top: 50%;
+	float: right;
+}
+
+th {
+	border-bottom: 2px solid black;
+	padding-bottom: 25px;
+}
+
+tr {
+	border-bottom: 1px solid black;
+}
+
+th, tr {
+	text-align: center;
+	vertical-align: center;
+	padding: 10px;	
+}
+
+#basket {
+	position: absolute;
+	text-align: center;
+	bottom: 10px;
+}
