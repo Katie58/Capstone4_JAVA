@@ -13,31 +13,30 @@
 	background-color: RGB(200,200,200);
 }
 
-table, #shop {
+table {
 	background-color: white;
-	position: absolute;
+
 	text-align: center;
 	border: 1px solid black;
 	padding: 15px;
-	top: 25%;
 	left: 25%;
 	right: 25%;
 	width: 50%;
-	float: left;
+}
+
+#inventory {
+	position: absolute;
+	top: 25%;
 }
 
 #cart {
-
 	position: absolute;
 	top: 75%;
-	float: right;
 }
 
 #added {
-	visibility: visible;
 	position: absolute;
 	top: 50%;
-	float: right;
 }
 
 th {

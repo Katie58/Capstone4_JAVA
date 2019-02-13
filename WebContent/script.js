@@ -1,31 +1,11 @@
+const f = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
 var cart = [['item', 0.00, 0]];
 
 function addToCart(productName, productPrice) {
-
-	/*
-	var addQuantity = false;
-	var count = 0;
-	
-	var product = new Object();
-	product = {name: productName, price: productPrice, quantity: 1};
-	
-	if(cart === undefined) {
-		cart = product;
-	} else {
-		for (var object of cart) {
-			count = 0;
-			for (var key of pair) {
-				if (pair[key] === productName) {
-					addQuantity = true;
-				}
-				if (addQuantity) {
-					pair[key] += 1;
-				}
-				count++;
-			}
-		}
-	}
-	*/
 	
 	var present = false; 
 	
@@ -46,10 +26,10 @@ function addToCart(productName, productPrice) {
 		cart.push([productName, productPrice, 1]);
 	}
 
-	var cartAdd = document.getElementById('addHead');
-	cartAdd.insertAdjacentHTML("afterend", "<tr id=\"omgWork\"></tr>");
+	var cartAdd = document.getElementById('addBody');
+	cartAdd.insertAdjacentHTML("beforeend", "<tr id=\"omgWork\"></tr>");
 	var omg = document.getElementById('omgWork');
-	omg.insertAdjacentHTML("afterbegin", "<td>" + productName + "</td><td>" + productPrice + "</td><td><i><small>added to cart</small></i></td>");
+	omg.insertAdjacentHTML("afterbegin", "<td>" + productName + "</td><td>" + f.format(productPrice) + "</td><td><i><small>added to cart</small></i></td>");
 }
 
 function checkout() {
@@ -61,21 +41,60 @@ function checkout() {
 	show.style.visibility = 'visible';
 	*/
 	
+	var parent = document.getElementById("cartDiv");
+	var child = document.getElementById("cartTable");
+	if (child) {
+		parent.removeChild(child);
+	}
+
+	var div = document.getElementById("cartDiv");
+	var table = document.createElement("table");
+	table.id = 'cart';
+	table.style = "overflow-x:auto;"
+	div.appendChild(table);
+	var thead = document.createElement("thead");
+	table.appendChild(thead);
+	var tbody = document.createElement("tbody");
+	tbody.id = 'cartContents';
+	table.appendChild(tbody);
+	var row = document.createElement("tr");
+	row.id = 'cartHead';
+	thead.appendChild(row);
+	var head = document.createElement("th");
+	row.appendChild(head);
+	var header = document.createTextNode("Product")
+	head.appendChild(header);
+	head = document.createElement("th");
+	row.appendChild(head);
+	header = document.createTextNode("Price");
+	head.appendChild(header);
+	head = document.createElement("th");
+	row.appendChild(head);
+	header = document.createTextNode("Quantity")
+	head.appendChild(header);
+	
+	var total = 0;
 	if(cart[1][0] === undefined) {
 		console.log("5" + cart);
-		var cartShow = document.getElementById('cartHead');
-		cartShow.insertAdjacentHTML("afterend", "<tr id=\"omgWork\">" + "<i>cart empty!</i>" + "</tr>");		
+		var cartShow = document.getElementById('cartContents');
+		cartShow.insertAdjacentHTML("afterbegin", "<tr></tr><tr id=\"omgWork\">" + "<i>cart empty!</i>" + "</tr><tr></tr>");		
 	} else {
 		for(var item of cart) {
 			if (item[2] === 0) {
 				continue;
 			}
 			console.log("6" + cart);
-			var cartShow = document.getElementById('cartHead');
-			cartShow.insertAdjacentHTML("afterend", "<tr id=\"omfg\"></tr>");
+			var cartShow = document.getElementById('cartContents');
+			cartShow.insertAdjacentHTML("afterbegin", "<tr id=\"omfg\"></tr>");
 			var omg = document.getElementById('omfg');
-			omfg.insertAdjacentHTML("afterbegin", "<td>" + item[0] + "</td><td>" + item[1] + "</td><td>" + item[2] + "</td>");
+			omg.insertAdjacentHTML("afterbegin", "<td>" + item[0] + "</td><td>" + f.format(item[1]) + "</td><td>" + item[2] + "</td>");
+			total += item[1];
 		}
 	}
+	var tax = total * 0.06;
+	var cartTotal = document.getElementById('cartContents');
+	cartTotal.insertAdjacentHTML("beforeend", "<tr id=\"omfgTotal\"></tr>");
+	var omfg = document.getElementById('omfgTotal');
+	omfg.insertAdjacentHTML("afterbegin", "<td><br>" + item[0].length + " items</td><td><br>subtotal: " + f.format(total) + "</td><td><br>tax: " + f.format(tax) + "</td>");
 
 }
